@@ -1,110 +1,142 @@
 # 🌊 AquaGuardian
-**AI Smart Water & Sanitation Monitoring Platform**
 
-> *Computing Solutions to Water and Sanitation for Sustainable Development (SDG 6)*
+**AI-Powered Water Management Platform | SDG 6: Clean Water & Sanitation**
 
----
+> A real-time, community-driven web application connecting citizens, farmers, and municipal authorities to track, report, and resolve water and sanitation issues — powered by a live cloud database.
 
-## 1. Problem Statement
-**The Global Water Crisis:**
-- **2.2 Billion** people lack access to safely managed drinking water.
-- **1.2 Million** annual deaths are linked to unsafe water and poor sanitation.
-- **80%** of global wastewater flows back into the ecosystem without being treated or reused.
-- Local municipalities face untracked pipeline leakages, resulting in massive resource loss while rural households suffer from unverified contamination.
-
-These issues directly cripple public health, stall agricultural growth, and disproportionately affect developing communities. The lack of real-time data leaves authorities reacting to crises rather than preventing them.
+🌐 **Live App:** [https://aquaguardian.vercel.app](https://aquaguardian.vercel.app)
 
 ---
 
-## 2. Solution Overview
-**AquaGuardian** is a modern, AI-powered web platform designed to revolutionize water management. It bridges the gap between IoT infrastructure, artificial intelligence, and community crowdsourcing.
+## ✨ Features
 
-We enable:
-- **Communities** to instantly check water safety in their neighborhoods.
-- **Citizens** to crowdsource reports on sanitation failures and pipeline leaks.
-- **Authorities** to monitor, verify, and respond to water resource metrics in real-time.
-- **AI Models** to predict impending shortages and contamination risks before they occur.
+### 🏙️ Municipal Command Center (Admin Panel)
+- **Passcode-protected** dashboard for water authorities
+- **Live Triage** — incoming citizen reports update in real-time via Convex
+- **Field Teams Management** — Add, remove and manage real field teams stored in the database
+- **Report Assignment** — Assign reports to available teams, shifting status from `Pending → Investigating → Resolved`
 
----
+### 🗺️ Live Water Issue Map
+- Interactive map powered by **React Leaflet**
+- Every citizen report drops a pin in real-time
+- Filter by issue type or zoom to any region
 
-## 3. Core Features
-1. **Live Water Safety Map**: Interactive GIS interface showing safe and contaminated zones globally.
-2. **AI Water Risk Prediction System**: Analyzes historical metrics to forecast contamination events up to 7 days in advance.
-3. **Real-Time Quality Dashboard**: Live charts visualizing pH, turbidity, and usage trends.
-4. **Community Reporting Protocol**: Image-supported forms for users to report dirty water and broken infrastructure.
-5. **Municipality Admin Panel**: Triage incoming crowdsourced reports and dispatch field teams.
-6. **Smart Alerts**: Automated status warnings when water nodes become dangerous.
+### 📋 Citizen Reporting
+- Submit reports with: type, location, photo, GPS coordinates, description
+- Categories include: Pipe Leak, Contamination, Drought, Flooding, and **Agriculture-specific types** (Irrigation Shortage, Canal Blockage)
 
----
+### 📊 AI Analytics Dashboard
+- Log real daily water usage and quality scores
+- **OLS Linear Regression** algorithm forecasts the next 7 days
+- Zero mock data — charts only generate from real entries logged by admins
+- Fully deletable records stored in Convex
 
-## 4. UI Design Aesthetic
-AquaGuardian features a **modern startup-level interface** built for trust, speed, and clarity:
-- **Heroic Atmosphere**: Smooth Framer Motion animations combined with deep gradients and glassmorphism.
-- **Interactive Visuals**: Real-time Recharts analytics and responsive Leaflet maps with custom severity-colored markers.
-- **Accessibility**: A fully mobile-responsive design ensuring critical tools are available to rural users on low-end devices.
-
----
-
-## 5. Technology Stack
-- **Frontend**: React.js (Vite), Tailwind CSS v4, Framer Motion
-- **Visualization**: Recharts, React-Leaflet
-- **Backend/API (Simulated for Prototype)**: Node.js + Express
-- **AI / Analytics Environment**: Python, TensorFlow / Scikit-learn
-- **Database (Target)**: MongoDB / Firebase
-- **Icons**: Lucide React
+### 🧪 Community Awareness Portal
+- Dynamic safety alerts generated from real report data (e.g., "Boil Water Advisory")
+- SDG 6 education and hygiene best practices
 
 ---
 
-## 6. System Architecture
-**The Data Flow:**
-1. **IoT Sensors**: Field units collect pH, turbidity, and flow rates.
-2. **Edge to Cloud**: Data is pushed via MQTT/REST to AWS/Firebase cloud databases.
-3. **AI Processing Layer**: A Python-based TensorFlow model continuously evaluates ingested data to classify and predict contamination trajectories.
-4. **API Gateway**: Node.js APIs serve unified metrics to the frontend.
-5. **Dashboard Visualization**: React frontend consumes the API, updating the Live Map and Analytics Dashboard instantaneously.
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React (Vite), Tailwind CSS, Framer Motion |
+| **Database** | [Convex](https://convex.dev) — Real-time, serverless |
+| **Maps** | React Leaflet + OpenStreetMap |
+| **Charts** | Recharts |
+| **Icons** | Lucide React |
+| **Deployment** | Vercel |
+| **PWA** | `manifest.json` for mobile install support |
 
 ---
 
-## 7. Prototype for Hackathon
-To ensure a robust, fail-safe hackathon demonstration, our prototype utilizes a **Simulated Frontend Data Layer**:
-- The `mockDataService.js` mathematically generates realistic, fluctuating sensor arrays mapping over a city infrastructure.
-- The **Water Risk Map** plots these generated zones in real-time.
-- The **Analytics Dashboard** runs a deterministic AI simulation to project risk trajectories visually.
-- The **Reporting System** includes a functional multi-step mock UI demonstrating the user-to-municipal communication loop.
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- A [Convex](https://convex.dev) account (free)
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/martyn-in/HACKNX.git
+cd HACKNX
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Set up Convex
+```bash
+npx convex dev
+```
+Copy the `CONVEX_DEPLOYMENT` URL into a `.env.local` file:
+```env
+VITE_CONVEX_URL=https://your-deployment.convex.cloud
+```
+
+### 4. Run the dev server
+```bash
+npm run dev
+```
+
+### 5. Deploy to Vercel
+```bash
+npx vercel --prod
+```
 
 ---
 
-## 8. Social Impact (SDG 6)
-AquaGuardian drives the mission of Clean Water and Sanitation for All:
-- **Rural Households**: Receive life-saving alerts before consuming contaminated water.
-- **Municipal Authorities**: Optimize maintenance budgets by dispatching repair teams exactly where needed.
-- **Farmers**: Access unpolluted irrigation water, protecting crop yield.
-- **NGOs**: Utilize our analytics to direct relief efforts efficiently.
+## 📁 Project Structure
+
+```
+HACKNX/
+├── convex/              # Serverless backend (Convex functions)
+│   ├── schema.ts        # Database schema: reports, teams, waterData
+│   ├── reports.ts       # CRUD for citizen reports
+│   ├── teams.ts         # Field team management
+│   └── waterData.ts     # Water analytics data
+├── src/
+│   ├── pages/
+│   │   ├── Home.jsx           # Landing page
+│   │   ├── MapPage.jsx        # Live issue map
+│   │   ├── ReportIssue.jsx    # Citizen report form
+│   │   ├── Dashboard.jsx      # Stats dashboard
+│   │   ├── AdminPanel.jsx     # Municipal command center
+│   │   ├── Awareness.jsx      # Community portal
+│   │   └── Analytics.jsx      # AI predictive analytics
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── AquaBot.jsx        # AI chatbot assistant
+│   │   └── ErrorBoundary.jsx
+│   └── context/
+│       └── LanguageContext.jsx # i18n: English, Telugu, Hindi
+└── public/
+    └── manifest.json   # PWA configuration
+```
 
 ---
 
-## 9. Scalability
-1. **Smart Villages**: Low-cost, battery-powered Arduino sensor deployments mapping isolated wells.
-2. **Smart Cities**: API integrations natively into existing municipal sewage and pipeline monitoring networks.
-3. **National Grids**: Expanding the AI training set to analyze cross-state river systems for agricultural planning.
+## 🌍 SDG 6 Impact
+
+This platform directly addresses **UN Sustainable Development Goal 6** — Clean Water and Sanitation:
+
+- 📍 **Real-time crowdsourced reporting** of water infrastructure failures
+- 🚒 **Rapid municipal response** via coordinated field team dispatch
+- 🧪 **Predictive analytics** to anticipate demand spikes and quality drops
+- 🌾 **Agriculture support** for farmers to report and track irrigation issues
+- 📣 **Public awareness** of hygiene and local water safety advisories
 
 ---
 
-## 10. Future Innovations
-- **Satellite Water Monitoring**: Integrating ESA Copernicus data to track macro-level drought patterns.
-- **Blockchain Data Transparency**: Making water quality metrics immutable to prevent local corruption.
-- **GIS Resource Mapping**: Advanced topography integration to map watershed flows dynamically.
+## 🔐 Admin Access
+
+The Admin Panel at `/admin` is secured with a passcode.
 
 ---
 
-## 11. Demo Scenario
-1. **The Hero Entrance**: The judges are greeted by the stunning glassmorphic Home screen, establishing the scale of the crisis.
-2. **The Discovery**: We navigate to the **Live Map**, instantly identifying a "Warning" zone with elevated turbidity metrics at a local school.
-3. **The Prediction**: We open the **Analytics Dashboard**, showing the AI risk model predicting a severe contamination event within 48 hours for that zone.
-4. **The Action**: We switch to the **Report Issue** page, showing how a local teacher crowdsources photo evidence of the broken sanitation pipe.
-5. **The Resolution**: Finally, we load the **Admin Panel**, demonstrating how the municipality receives the alert, triages the issue, and dispatches a team before an outbreak occurs.
+## 📄 License
 
----
-
-## 12. Winning Pitch (30 Seconds)
-*"Every year, 1.2 million people die because we react to contaminated water, instead of preventing it. Meet AquaGuardian—the AI-powered immune system for global water infrastructure. By combining real-time IoT sensors, predictive machine learning, and citizen crowdsourcing, we give municipalities the exact data they need to stop leaks and contamination before they cripple an ecosystem. AquaGuardian isn't just a dashboard; it's the scalable technology bridging the gap between SDG 6 and human survival. Thank you."*
+MIT © 2025 [martyn-in](https://github.com/martyn-in)
