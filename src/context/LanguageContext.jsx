@@ -4,7 +4,7 @@ export const translations = {
     en: {
         nav: {
             home: 'Home', map: 'Risk Map', dashboard: 'Dashboard',
-            report: 'Report Issue', admin: 'Admin',
+            report: 'Report Issue', admin: 'Admin', awareness: 'Awareness',
         },
         home: {
             badge: 'Solving SDG 6: Clean Water & Sanitation',
@@ -79,7 +79,7 @@ export const translations = {
     te: {
         nav: {
             home: 'హోమ్', map: 'రిస్క్ మ్యాప్', dashboard: 'డాష్‌బోర్డ్',
-            report: 'సమస్య నివేదించు', admin: 'అడ్మిన్',
+            report: 'సమస్య నివేదించు', admin: 'అడ్మిన్', awareness: 'అవగాహన',
         },
         home: {
             badge: 'SDG 6 పరిష్కారం: స్వచ్ఛ నీరు & పారిశుద్ధ్యం',
@@ -154,7 +154,7 @@ export const translations = {
     hi: {
         nav: {
             home: 'होम', map: 'जोखिम नक्शा', dashboard: 'डैशबोर्ड',
-            report: 'समस्या रिपोर्ट करें', admin: 'एडमिन',
+            report: 'समस्या रिपोर्ट करें', admin: 'एडमिन', awareness: 'जागरूकता',
         },
         home: {
             badge: 'SDG 6 समाधान: स्वच्छ जल और स्वच्छता',
@@ -232,7 +232,7 @@ const LanguageContext = createContext(null);
 
 export function LanguageProvider({ children }) {
     const [lang, setLang] = useState(localStorage.getItem('lang') || 'en');
-    const t = translations[lang];
+    const t = translations[lang] || translations['en'];
     const setLanguage = (l) => {
         setLang(l);
         localStorage.setItem('lang', l);

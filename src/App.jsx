@@ -6,8 +6,11 @@ import MapPage from './pages/MapPage';
 import Dashboard from './pages/Dashboard';
 import ReportIssue from './pages/ReportIssue';
 import AdminPanel from './pages/AdminPanel';
+import Awareness from './pages/Awareness';
+import Analytics from './pages/Analytics';
 import AquaBot from './components/AquaBot';
 import { LanguageProvider } from './context/LanguageContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -38,13 +41,17 @@ function App() {
           <Navbar toggleTheme={toggleTheme} theme={theme} />
 
           <main className="flex-grow flex flex-col w-full">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/map" element={<MapPage />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/report" element={<ReportIssue />} />
-              <Route path="/admin" element={<AdminPanel />} />
-            </Routes>
+            <ErrorBoundary>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/map" element={<MapPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/report" element={<ReportIssue />} />
+                <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/awareness" element={<Awareness />} />
+                <Route path="/analytics" element={<Analytics />} />
+              </Routes>
+            </ErrorBoundary>
           </main>
 
           {/* Global AquaBot Chatbot */}

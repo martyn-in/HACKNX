@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Droplets, Map as MapIcon, BarChart3, AlertTriangle, ShieldCheck, Sun, Moon, Menu, X, Globe } from 'lucide-react';
+import { Droplets, Map as MapIcon, BarChart3, AlertTriangle, ShieldCheck, Sun, Moon, Menu, X, Globe, BookOpen, TrendingUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -15,6 +15,8 @@ const Navbar = ({ toggleTheme, theme }) => {
         { name: t.nav.map, path: '/map', icon: <MapIcon className="w-5 h-5" /> },
         { name: t.nav.dashboard, path: '/dashboard', icon: <BarChart3 className="w-5 h-5" /> },
         { name: t.nav.report, path: '/report', icon: <AlertTriangle className="w-5 h-5" /> },
+        { name: t.nav.awareness, path: '/awareness', icon: <BookOpen className="w-5 h-5" /> },
+        { name: 'Analytics', path: '/analytics', icon: <TrendingUp className="w-5 h-5" /> },
         { name: t.nav.admin, path: '/admin', icon: <ShieldCheck className="w-5 h-5" /> },
     ];
 
